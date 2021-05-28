@@ -7,6 +7,7 @@ import "./index.css"
 import Nav from './nav'
 import User from './user'
 import "./App.css"
+import Edituser from './edituser'
 
 
 function useStickyState(defaultValue, key) {
@@ -67,6 +68,7 @@ function App() {
 
   React.useEffect(() => {
     getShops()
+
     getCreems()
     getUsers()
   }, []);
@@ -99,7 +101,35 @@ function App() {
     })
   
   }
- 
+  const handleEdit = (user) => {
+    fetch(url + "/user/" + user._id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+    .then(() => getUsers())
+  }
+
+  const handleUser = (newUser) => {
+    console.log("state lifted")
+    // console.log(newUser)
+    fetch(url + "/user", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(newUser)
+    })
+    .then(() => getUsers())
+  }
+  const emptyUser = {
+    
+    last: "",
+    img:  ""
+    
+  }
   const [editUser, setEditUser] = React.useState()
   
   const selectedEditUser = (user) => {
@@ -111,6 +141,28 @@ function App() {
   const selectedEdit = (user) => {
     setEdit(user)
   }
+
+
+  const selectFavorite = (order) => {
+    // setTimeout(setFavorite([...favorite, order]), 2000)
+    let body = { faves: order._id}
+    console.log(editUser._id)
+    // console.log("WHAT DATS IS GETTING SENT???", order.name)
+    fetch(url + "/user/faves/" + editUser._id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+    .then(() => getUsers())
+  }
+
+
+
+
+
+  /////////////////////////////////
   return (
     <div className="App">
       <Nav />
@@ -142,7 +194,9 @@ function App() {
         render={(rp) => 
           
           <Creem {...rp} 
-          creems={creems}           
+          creems={creems}      
+          selectFavorite={selectFavorite}
+     
           selectCart={selectCart}
           />
         
@@ -153,7 +207,7 @@ function App() {
           <User  {...rp} users={users} selectedEditUser={selectedEditUser} selectedEdit={selectedEdit} deleteUser={deleteUser}   />
 
 } />
-    {/* <Route
+    <Route
 
             exact
             path="/main/create"
@@ -177,7 +231,7 @@ function App() {
            
               handleSubmit={handleEdit} />
             )}
-          /> */}
+          />
       
       </Switch>
     </div>
