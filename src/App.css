@@ -1,0 +1,287 @@
+
+body {
+  background-color: #242424;
+}
+
+.App {
+  text-align: center;
+
+}
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+
+/* User forms */
+
+
+.container {
+  display: grid;
+
+}
+
+.form {
+  list-style: none;
+}
+
+.form-header {
+  color: #EE4540;
+  text-shadow: rgb(237, 237, 237, .35) 0px 0px .5px,   rgb(237, 237, 237, .35) 0px 0px .5px,   rgb(237, 237, 237, .35) 0px 0px .5px,
+             rgb(237, 237, 237, .35) 0px 0px .5px,   rgb(237, 237, 237, .35) 0px 0px .5px,   rgb(237, 237, 237, .35) 0px 0px .5px;
+}
+
+.form li {
+  padding-bottom: 10px;
+  
+}
+
+.form li input {
+  border: none;
+  border-bottom: 2px solid #EE4540;
+  border-radius: 18px;
+    background: #600;
+    padding: 20px; 
+    width: 200px;
+    height: 15px;  
+  color: #ededed;
+  background: -webkit-linear-gradient(360deg, #1d1d1d -50%, #494949 175%);
+  background: -moz-linear-gradient(360deg, #1d1d1d -50%, #494949 175%);
+  background: linear-gradient(360deg, #1d1d1d -50%, #494949 175%);
+}
+
+.small-container {
+  font-family: 'Montserrat'; 
+  color: #ededed;
+}
+/* Becasue the internet sucks so we we will all the do the same thing just a bit different  */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+.userGrid {
+
+display: grid;
+grid-template-columns: 1fr;
+gap: 5px 5px;
+}
+
+@media only screen and (min-width: 768px) {
+.userGrid {
+  align-items: end;
+ 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px 10px;
+  
+  }
+
+}
+.small-container {
+  padding-top: 15px;
+
+}
+
+.card {
+ display: flex;
+ flex-direction: column;
+justify-content: flex-start;
+  border-radius:  60px;
+ height: 325px;
+background-color: white;
+color: #151515;
+}
+
+.profile-picture {
+  border-radius: 200px;
+}     
+
+.outer {
+  width: 300px;
+  height: 350px;
+  margin: 10%;
+  border: 5px solid rgba(0, 0, 0, .2);
+  border-radius: 5px;
+}
+
+.inner {
+  width: 270px;
+  height: 270px;
+  margin: auto;
+  margin-top: 3%;
+  text-align: center;
+  background:    white;
+  border-radius: 5px;
+  padding: 5px;
+}
+.small {
+  padding: -10px;
+}
+
+#fave {
+  border: none;
+  background-repeat: no-repeat;
+background-size: 100%;
+width: 35px;
+height: 35px;
+  background:url(https://res.cloudinary.com/dhad6e9gj/image/upload/v1621617894/Frozzy%20Project/Favorite_Icon-01-01_wqwwih.png);
+}
+#fave:focus {
+  background-color: red;
+  width: 35px;
+  height: 35px;
+    background:url(https://i.ibb.co/Ny3MxSJ/color.png);
+}
+
+
+#delete2 {
+  border: 1px solid var(--main-red);
+  height: 40px;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-top: 13px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  background: black;
+  color: var(--main-red);
+  font-family: 'Montserrat'; 
+  margin-left: 10px;
+  margin-right: 20px;
+}
+#delete2:hover {
+  color:#ededed;
+  background: var(--main-red);
+  border: 1px solid var(--main-black)
+}
+
+/* ////////////////////////////////////// FOOTER PAGE STYLING ////////////////////////////////// */
+nav {
+  /* border: 2px solid red; */
+  position: relative;
+  top: 600px; 
+  z-index: 1;
+  background-color: var(--main-black);
+}
+
+
+#footer-container {
+  /* border: 1px solid red; */
+  height: 80px;
+  width: 90%;
+  /* margin: 0 auto; */
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  background-color: var(--main-black);
+  margin-top:125px;
+}
+
+
+@media only screen and (min-width: 600px) {
+
+#footer-container {
+  /* border: 1px solid red; */
+  height: 50px;
+  width: 90%;
+  /* margin: 0 auto; */
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  background-color: var(--main-black);
+  /* margin-top:-550px; */
+}
+}
+.footer-buttons {
+  /* border: 2px solid hotpink; */
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+}
+
+
+.footer-icon {
+  border: none;
+  /* border: 2px solid red; */
+  margin: 0 auto; 
+  background: none;
+  transform: scale(.8)
+}
+
+.footer-copy {
+  /* border: 2px solid red; */
+  color: var(--main-grey);
+  text-align: center;
+  margin: 0;
+  font-size: 1em;
+  position: relative;
+  bottom: 5px;
+}
+.footer-buttons p, p:hover, p:focus, p:active {
+  /* color: red; */
+  text-decoration: none;  
+}
+
+
+
+
+
+
+
+#footer-home-button-container {
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: center;
+  /* width: 40%; */
+  /* height: 40%; */
+  margin: 0 auto;
+  position: relative;
+  bottom: 30px;
+}
